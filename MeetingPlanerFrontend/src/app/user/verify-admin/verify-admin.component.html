@@ -1,0 +1,35 @@
+<div>
+    <br><br><br><br><br><br><br>
+    <div class="container bg-light set">
+        <div class="row">
+            <div class=" d-none d-sm-block col-sm-6 col-md-6 col-lg-6 col-xl-6 " (deferLoad)="meetingImage.show = true">
+                <img [src]="meetingImage.url">
+            </div>
+            <div class="text-center col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 " *ngIf='this.simple==200'>
+                <br><br><br><br>
+                <!-- <h2><b>Awesome. </b></h2> -->
+                <h2><b>
+                        <fa-icon [icon]="faMeetup"></fa-icon> Meeting Planner
+                    </b></h2>
+                <br>
+                <p class="text-muted"><b>Awesome!</b> your account has been verified successfully.</p>
+                <p class="text-muted">Now you can login to your account. </p>
+                <br>
+                <button class="btn btn-link " [routerLink]='["/login"]'>Go to login <fa-icon [icon]="faSignInAlt">
+                    </fa-icon></button>
+            </div>
+            <div class="text-center col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 " *ngIf='this.simple==500'>
+                <br><br><br><br>
+                <h2><b>Oops. </b></h2>
+                <p class="text-muted">some technical error occured while verifying accont.</p>
+                <p class="text-muted">please try again later.</p>
+                <br>
+                <button class="btn btn-link " [routerLink]='["/login"]'>Go Home</button>
+
+
+            </div>
+        </div>
+
+    </div>
+    <br><br><br><br><br>
+</div>

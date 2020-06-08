@@ -1,0 +1,56 @@
+.center{
+    text-align: center;
+ }
+
+
+.profile{
+  position: absolute;
+  top: -50px;
+  left: 33%;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%; 
+  background-color: #e3f2fd; 
+  overflow: hidden; 
+  margin: auto;
+}
+
+.cart{
+  background: white;
+  position: relative;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 60px;
+  margin-bottom: 9px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: all 0.2s ease-in-out;
+}
+.cart:hover{
+  transform: translateY(2%);
+}
+  
+  .displayImage{
+    width: 100%;
+    border-radius: 15px 15px 600px 600px; 
+    margin: auto;
+  }
+  .profilePic{
+    width: 100%;
+    margin: auto;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .text-block {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    color:  white;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
+

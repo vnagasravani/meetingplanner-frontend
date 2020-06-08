@@ -1,0 +1,124 @@
+<div class="container">
+    <div><br><br></div>
+    <div class="row">
+        <nav class="nav bg-light shadow justify-content-end" style="width: 100%; border-radius: 15px;">
+            <a class="nav-link sty" [routerLink]="['/user-view']"><b>Home</b></a>
+            <a class="nav-link sty" (click)="logout()"><b>Logout</b></a>
+        </nav>
+    </div>
+
+    <div class="row">
+        <br><br>
+    </div>
+    <div class="row bg-light shadow" style="background-color: white; border-radius: 15px;">
+        <div class="col-12 col-xl-4 text-center" style="border-right: solid 1px #e3f2fd;">
+            <div>
+                <br><br>
+            </div>
+            <div class="profile shadow">
+                <img *ngIf="this.userInfo.profilePic===true && !imagePreview" class="profilePic"
+                    [src]="this.url+this.userInfo.userId+'.jpg'">
+                <img *ngIf="imagePreview" class="profilePic" [src]="sanitizer.bypassSecurityTrustUrl(imagePreview)">
+                <div>
+                    <br>
+                    <fa-icon *ngIf="!imagePreview && this.userInfo.profilePic===false"
+                        style="color: white; margin-top: 50px;" size="8x" [icon]="faUserCircle">
+                    </fa-icon>
+                </div>
+            </div>
+            <h5 style="margin-top: 20px; color: #24a0ed;">Profile photo</h5>
+            <br>
+            <input type="file" placeholder="upload photo" (change)="onImageChange($event)" accept="image/*">
+            <br>
+            <button class="btn btn-info" style="margin: 20px 0 10px 0;" *ngIf="imagePreview" (click)="onImageUpload()">
+                Save Photo</button>
+            <div>
+                <br><br>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div>
+                <br><br>
+                <h5 style="text-align: left; color: #24a0ed;"><b>User Details</b></h5>
+                <br>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table mb-0 ">
+
+                    <tbody class="text-muted">
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">User Name </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.firstName}} {{this.userInfo.lastName}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">First Name </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.firstName}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">Last Name </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.lastName}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">Email </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.email}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">Mobile Number </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.mobileNumber}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">Country </b></h6>
+                            </td>
+                            <td>
+                                <h6>{{this.userInfo.country}}</h6>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h6><b class="inline-block">User type </b></h6>
+                            </td>
+                            <td>
+                                <h6>Normal User</h6>
+                            </td>
+                        </tr>
+
+                        <tr><br></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <!-- <img *ngIf="imagePreview" [src]="sanitizer.bypassSecurityTrustUrl(imagePreview)"> -->
+
+    </div>

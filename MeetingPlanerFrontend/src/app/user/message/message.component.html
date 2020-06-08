@@ -1,0 +1,26 @@
+<div>
+    <br><br><br><br><br><br><br>
+    <div class="container bg-light set">
+        <div class="row">
+            <div class=" d-none d-md-block col-sm-6 col-md-6 col-lg-6 col-xl-6 " (deferLoad)="meetingImage.show = true">
+                <img [src]="meetingImage.url">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                <br><br><br>
+                <h2><b>
+                        <fa-icon [icon]="faMeetup"></fa-icon> Meeting Planner
+                    </b></h2>
+                <br>
+                <p class="text-muted">your account has been created.</p>
+                <p class="text-muted">Please check your registered email for account verification link.</p>
+                <p class="text-muted">verify your email to login to your account.</p>
+                <button class="btn btn-link format dec animate" (click)='goToHome()'>
+                    <h5><b>Go to Login</b></h5>
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+    <br><br><br><br><br><br>
+</div>

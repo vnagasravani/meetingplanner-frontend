@@ -1,0 +1,25 @@
+.profile{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%; 
+    background-color: #e3f2fd; 
+    overflow: hidden; 
+    margin: auto;
+}
+.profilePic{
+    width: 100%;
+    margin: auto;
+  }
+
+.sty{
+    text-decoration: none;
+    color: #24a0ed;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.sty:hover{
+    background-color:#24a0ed ;
+    border-radius: 30px;
+    color: white;
+}

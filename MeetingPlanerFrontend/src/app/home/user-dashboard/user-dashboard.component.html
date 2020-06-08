@@ -1,0 +1,182 @@
+<nav class="navbar navbar-expand-lg navbar-default shadow" style="background-color: #e3f2fd;overflow: hidden;">
+    <a class="navbar-brand" style="color: #24a0ed;cursor: pointer;">
+        <fa-icon [icon]="faMeetup"></fa-icon> Meeting planner
+    </a>
+    <button class="navbar-toggler btn btn-outline-info" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> </ul>
+        <!-- <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            <fa-icon [icon]="faCalendarAlt"></fa-icon> Dashboard <span class="sr-only">(current)</span>
+        </button> -->
+        <!-- <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            About <fa-icon [icon]="faPaperPlane"></fa-icon>
+        </button>
+
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            Contact <fa-icon [icon]="faEnvelope"></fa-icon>
+        </button> -->
+
+        <!-- <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            <fa-icon [icon]="faUser"></fa-icon> Profile
+        </button> -->
+
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;"
+            (click)="gotoProfile()">
+            <fa-icon [icon]="faUser"></fa-icon> Profile
+        </button>
+
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="border: none;" (click)="LogOut()">Logout
+            <fa-icon [icon]="faPowerOff">
+            </fa-icon></button>
+    </div>
+</nav>
+
+<div class="container-fluid ">
+    <br>
+
+    <div class="container" style="text-align: center;">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="btn-group" style="margin: 10px;">
+                    <div class="btn btn-info animate shadow-lg" (click)="setView(CalendarView.Month)"
+                        [class.active]="view === CalendarView.Month">
+                        Month
+                    </div>
+                    <div class="btn btn-info animate shadow-lg" (click)="setView(CalendarView.Week)"
+                        [class.active]="view === CalendarView.Week">
+                        Week
+                    </div>
+                    <div class="btn btn-info animate shadow-lg" (click)="setView(CalendarView.Day)"
+                        [class.active]="view === CalendarView.Day">
+                        Day
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+            </div>
+
+            <div class="col-md-4">
+                <div class="btn-group" style="margin: 10px;">
+
+                    <button class="btn btn-info animate" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                        (viewDateChange)="closeOpenMonthViewDay()">
+                        Previous
+                    </button>
+
+                    <button class="btn btn-outline-secondary animate" mwlCalendarToday [(viewDate)]="viewDate">
+                        Today
+                    </button>
+
+                    <button class="btn btn-info animate" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                        (viewDateChange)="closeOpenMonthViewDay()">
+                        Next
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" [ngSwitch]="view"
+                style="margin-top: 5px;margin-bottom: 20px;">
+                <!-- month view starts here -->
+                <mwl-calendar-month-view [viewDate]="viewDate" [events]='events' [refresh]="refresh"
+                    [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)" *ngSwitchCase="CalendarView.Month">
+                </mwl-calendar-month-view>
+                <!-- month view ends here -->
+                <!-- week view starts here -->
+                <mwl-calendar-week-view [viewDate]="viewDate" [events]='events' [refresh]="refresh"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)" *ngSwitchCase="CalendarView.Week">
+                </mwl-calendar-week-view>
+                <!-- week view ends here -->
+                <!-- day view starts here -->
+                <mwl-calendar-day-view [viewDate]="viewDate" [events]='events' [refresh]="refresh"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)" *ngSwitchCase="CalendarView.Day">
+                </mwl-calendar-day-view>
+                <!-- day view ends here -->
+            </div>
+
+            <ng-template #modalContent id='modal' let-close="close">
+
+                <div class="modal-header" style="background: #24a0ed;">
+                    <h5 class="modal-title " style="color: #e3f2fd;">
+                        <fa-icon style="color: #e3f2fd;" [icon]="faCalendarCheck"></fa-icon> created by
+                        <b>{{ modalData?.event.adminName |titlecase }}</b>
+                    </h5>
+                    <button type="button" class="close" style="color: #e3f2fd;" (click)="close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Meeting Name : </b>
+                        <p class="d-inline">{{ modalData?.event.title }}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Description : </b>
+                        <p class="d-inline">{{modalData?.event.description}}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Starts At : </b>
+                        <p class="d-inline">{{ modalData?.event.start| date:'medium'}}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Ends At : </b>
+                        <p class="d-inline">{{modalData?.event.end| date:'medium'}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background: #e3f2fd;">
+                    <button type="button" class="btn btn-outline-info colorbutton" (click)="close()"><b>OK</b></button>
+                </div>
+
+            </ng-template>
+
+            <ng-template #alert let-close="close">
+                <div class="modal-header" style="background: #24a0ed;">
+                    <h5 class=" modal-title " style="color: #e3f2fd;">
+                        <fa-icon style="color: #e3f2fd;" [icon]="faCalendarCheck"></fa-icon> created by
+                        <b>{{ reminder?.data.title |titlecase }}</b>
+                    </h5>
+                    <button type=" button" class="close" style="color: #e3f2fd;" (click)="close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Meeting Name : </b>
+                        <p class="d-inline">{{ modalData?.event.title }}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Description : </b>
+                        <p class="d-inline">{{modalData?.event.description}}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Starts At : </b>
+                        <p class="d-inline">{{ modalData?.event.start| date:'medium'}}</p>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <b class="inline-block">Ends At : </b>
+                        <p class="d-inline">{{modalData?.event.end| date:'medium'}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info colorbutton" (click)="close()">OK</button>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+h3 {
+    margin: 5px 5x 10px;
+  }
+
+  .animate{
+    transition: all 0.2s ease-in-out;
+  }
+  .animate:hover{
+    transform: translateY(-1px);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+  .colorbutton{
+    color :#24a0ed;
+    border: #24a0ed 1px solid;
+  }
+  .colorbutton:hover{
+    color: white;
+    background: #24a0ed;
+  }

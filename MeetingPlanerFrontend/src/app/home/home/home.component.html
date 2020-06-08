@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-default shadow" style="background-color: #e3f2fd;overflow: hidden;">
+    <a class="navbar-brand" style="color: #24a0ed;cursor: pointer;">
+        <fa-icon [icon]="faMeetup"></fa-icon> Meeting planner
+    </a>
+    <button class="navbar-toggler btn btn-outline-info" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> </ul>
+        <!-- <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" 
+        style="margin-right: 20px; border: none;" [routerLink]="['/profile']">
+            <fa-icon [icon]="faUser"></fa-icon> Profile
+        </button> -->
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="border: none;" (click)="LogOut()">Logout
+            <fa-icon [icon]="faPowerOff">
+            </fa-icon></button>
+    </div>
+</nav>
+
+<div>
+    <br><br>
+    <div class="container bg-light shadow" style="height: 100%; border-radius: 15px;">
+
+        <div class="row">
+            <div (deferLoad)="image.show = true">
+                <img class="displayImage" [src]="image.url">
+            </div>
+            <div class="text-block">
+                <h5>Welcome {{userInfo.userName}} <fa-icon [icon]="faGrinAlt"></fa-icon>
+                </h5>
+                <p class="d-none d-md-block" style="text-align: left;">scroll down for user
+                    list</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <h3 style="color: #24a0ed;margin: auto;" id="userList">User List</h3>
+            <br><br>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="row" *ngIf='this.userList'>
+                    <div class="col-md-6 col-lg-6 col-xl-4" *ngFor='let user of this.userList'>
+
+                        <div class="center shadow cart text-muted" [routerLink]="['/admin-view',user.userId]">
+                            <div class="profile shadow">
+                                <img *ngIf="user.profilePic===true" class="profilePic"
+                                    src="https://hemanth1508.s3.ap-south-1.amazonaws.com/{{user.userId}}.jpg">
+                                <div>
+                                    <br>
+                                    <fa-icon *ngIf="user.profilePic===false" style="color: white; margin-top: 50px;"
+                                        size="6x" [icon]="faUser">
+                                    </fa-icon>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <p><b> {{user.firstName  |titlecase}}
+                                    {{user.lastName}}</b>
+                            </p>
+                            <p>{{user.email}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <br><br><br><br>
+</div>

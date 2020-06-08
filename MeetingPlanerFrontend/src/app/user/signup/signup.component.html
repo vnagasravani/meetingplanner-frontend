@@ -1,0 +1,136 @@
+<nav class="navbar navbar-expand-lg navbar-default shadow" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" style="color: #24a0ed;cursor: pointer;" [routerLink]="['/login']">
+        <fa-icon [icon]="faMeetup"></fa-icon> Meeting planner
+    </a>
+    <button class="navbar-toggler btn btn-outline-info" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> </ul>
+        <!-- <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            About <fa-icon [icon]="faPaperPlane"></fa-icon>
+        </button>
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px; border: none;">
+            Contact <fa-icon [icon]="faEnvelope"></fa-icon>
+        </button> -->
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px;border: none;"
+            [routerLink]="['/login']">
+            Login <fa-icon [icon]="faSignInAlt"></fa-icon>
+        </button>
+    </div>
+</nav>
+<div>
+    <br><br><br>
+    <div class="container bg-light set">
+        <div class="row">
+            <div class="d-none d-md-block col-sm-7 col-md-7 col-lg-7 col-xl-7 fix"
+                (deferLoad)="signupImage.show = true">
+                <img [src]="signupImage.url" style="margin-left: -15px " width="100%" height="100%">
+            </div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
+                <br>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3><b>Sign Up</b></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="name">FirstName</label>
+                        <input type="text" id='name' class="form-control rounded-pill shadow"
+                            placeholder="enter first name" [(ngModel)]="firstName" required autofocus>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="lastname">LastName</label>
+                        <input type="text" id="lastname" class="form-control rounded-pill shadow"
+                            placeholder="enter last name" [(ngModel)]="lastName" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="email">Email</label>
+                        <input type="email" id='email' class="form-control rounded-pill shadow"
+                            placeholder="enter email id" [(ngModel)]="email" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+
+
+                        <label for="inputCountry">Country</label>
+                        <select [(ngModel)]="country" name="country" class="form-control rounded-pill shadow"
+                            id="inputCountry" (click)="onChangeOfCountry()" required>
+                            <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+                        </select>
+                        <br>
+                        <label for="inputMobile">Mobile Number</label>
+                        <div class="input-group">
+                            <div class="input-group-text" *ngIf='this.country'><b>+</b>{{countryCode}}</div>
+                            <input type="number" id="inputMobile" class="form-control rounded-pill shadow" name="mobile"
+                                [(ngModel)]="mobileNumber" placeholder="enter mobile number" required>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="pass">Password</label>
+                        <input type="password" id="pass" class="form-control rounded-pill shadow"
+                            placeholder="enter password here" [(ngModel)]="password" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="pretty p-icon p-round p-pulse">
+                            <input type="checkbox" [(ngModel)]='checked' />
+                            <div class="state p-info">
+                                <i class="icon mdi mdi-check"></i>
+                                <label>Set if you want to become admin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 text-center" style="margin: auto;">
+                        <button type="button" (click)="signUpFunction()"
+                            class="btn btn-outline-success animate text-center"><b>Signup <fa-icon [icon]="faUserPlus">
+                                </fa-icon></b>
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button type="button" style="margin: auto;" class="btn btn-link dec animate"
+                            [routerLink]="['/login']">Back
+                            to Login <fa-icon [icon]="faSignInAlt"></fa-icon></button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 text-justify">
+
+                        <div class="alert alert-info" role="alert">
+                            <p><b>Note:</b></p>
+                            <p> If you select admin you can only see normal users to assign meetings. Other admins can
+                                not add
+                                you in meetings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br><br><br>
+</div>

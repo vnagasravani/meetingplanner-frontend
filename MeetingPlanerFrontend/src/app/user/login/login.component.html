@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-default shadow" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" style="color: #24a0ed;cursor: pointer;">
+        <fa-icon [icon]="faMeetup"></fa-icon> Meeting planner
+    </a>
+    <button class="navbar-toggler btn btn-outline-info" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> </ul>
+        <button class="btn btn-outline-info my-2 my-sm-0 rounded-pill" style="margin-right: 20px;border: none;"
+            [routerLink]="['/signup']">
+            Signup <fa-icon [icon]="faUserPlus"></fa-icon>
+        </button>
+
+    </div>
+</nav>
+<div>
+    <br><br><br><br><br>
+    <div class="container bg-light set">
+        <div class="row">
+            <div class=" d-none d-lg-block col-sm-6 col-md-6 col-lg-6 col-xl-6 " (deferLoad)="meetingImage.show = true">
+                <img [src]="meetingImage.url">
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 special ">
+                <br><br>
+                <h2><b style="text-shadow: 1px 1px  #e3f2fd;">
+                        <fa-icon [icon]="faMeetup"></fa-icon> Meeting Planner
+                    </b></h2>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="email" [(ngModel)]="email" class="form-control rounded-pill shadow"
+                            placeholder="Email" required autofocus>
+                    </div>
+                    <br><br>
+                    <div class="col-12">
+                        <input type="password" [(ngModel)]="password" class=" form-control rounded-pill shadow"
+                            placeholder="Password" required>
+                    </div>
+                    <br><br><br>
+                    <div class="col-xl-12">
+                        <div class="pretty p-icon p-round p-pulse">
+                            <input type="checkbox" [(ngModel)]='checked' />
+                            <div class="state p-info">
+                                <i class="icon mdi mdi-check"></i>
+                                <label>Set if you are admin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-xl-12 text-center">
+                    <button type="button" (click)="logInFunction()"
+                        class="btn btn-outline-info shadow-lg rounded-pill animate" style="width: 25%;"><b>Login
+                            <fa-icon [icon]="faSignInAlt"></fa-icon></b></button>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xl-12 text-center">
+                        <button class="btn btn-link dec animate" (click)="resetPassword()">Forgot Password? <fa-icon
+                                [icon]="faLock">
+                            </fa-icon></button>
+                        <button class="btn btn-link dec animate" (click)='signUpFunction()'>Create Your Account <fa-icon
+                                [icon]="faUserPlus"></fa-icon></button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+</div>
